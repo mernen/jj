@@ -339,9 +339,9 @@ fn process_commit(
         } else if parent_edge.edge_type == GraphEdgeType::Missing {
             // If an omitted parent had the file, leave these lines unresolved.
             // The origin of the unresolved lines is represented as
-            // Err(root_commit_id).
+            // Err(parent_commit_id).
             for &(_, starting_line_number) in &parent_source.line_map {
-                state.original_line_map[starting_line_number] = Err(current_commit_id.clone());
+                state.original_line_map[starting_line_number] = Err(parent_commit_id.clone());
             }
             state.num_unresolved_roots += 1;
         }
